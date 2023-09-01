@@ -68,3 +68,13 @@ jobs:
           from_step: 4
           to_step: 5
           branch_name: ci
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update to step 5"
+          title: "Update to step 5"
+          body: "Updating the step to 5"
+          branch: ci
+          base: main
