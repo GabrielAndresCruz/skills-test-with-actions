@@ -58,6 +58,15 @@ jobs:
           fetch-depth: 0 # Let's get all the branches.
           ref: ci # Important, as normally `branch_protection_rule` event won't grab other branches
 
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update to step 5"
+          title: "Update to step 5"
+          body: "Updating the step to 5"
+          branch: ci
+          base: main
 
       # TODO: figure out a better way to deal with the lock on `main`, merge conflict this creates
       # In README.md, switch step 4 for step 5.
@@ -69,12 +78,3 @@ jobs:
           to_step: 5
           branch_name: ci
       
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Update to step 5"
-          title: "Update to step 5"
-          body: "Updating the step to 5"
-          branch: ci
-          base: main
